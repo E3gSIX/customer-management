@@ -2,8 +2,8 @@
 > Entity: PK(id), name, UF, CEP, address
 
 ## To Do
-- [ ] MySQL
-- [ ] Create
-- [ ] FindById
-- [ ] Update
-- [ ] DeleteById
+- [x] MySQL
+- [x] Create
+- [x] FindById
+- [x] Update
+- [x] DeleteById
