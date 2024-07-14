@@ -1,5 +1,5 @@
 # Customer Management
-> Entity: PK(id), name, UF, CEP, address
+> Entity: PK(id), name, UF, address
 
 ## To Do
 - [x] MySQL
