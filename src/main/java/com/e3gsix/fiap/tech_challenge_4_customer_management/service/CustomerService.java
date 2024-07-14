@@ -29,4 +29,32 @@ public class CustomerService {
         }
     }
 
+    public ResponseEntity<?> create(Customer customer) {
+        return ResponseEntity.ok(customerRepository.save(customer));
+    }
+
+    public ResponseEntity<?> update(Long customerId, Customer customer) {
+        Customer customerExist = customerRepository.findById(customerId).orElse(null);
+
+        if (customerExist != null) {
+            customerExist.setName(customer.getName());
+            customerExist.setBirthDate(customer.getBirthDate());
+            customerExist.setUf(customer.getUf());
+            customerExist.setAddress(customer.getAddress());
+            return ResponseEntity.ok(customerRepository.save(customerExist));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found.");
+        }
+    }
+
+    public ResponseEntity<?> delete(Long customerId) {
+        Customer customerExist = customerRepository.findById(customerId).orElse(null);
+
+        if (customerExist != null) {
+            customerRepository.delete(customerExist);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found.");
+        }
+    }
 }
