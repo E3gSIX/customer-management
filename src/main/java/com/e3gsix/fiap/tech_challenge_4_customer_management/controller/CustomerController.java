@@ -1,35 +1,17 @@
 package com.e3gsix.fiap.tech_challenge_4_customer_management.controller;
 
 import com.e3gsix.fiap.tech_challenge_4_customer_management.model.Customer;
-import com.e3gsix.fiap.tech_challenge_4_customer_management.service.CustomerService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
-@RestController
-@RequestMapping("/api/customer")
-@RequiredArgsConstructor
-public class CustomerController {
+public interface CustomerController {
 
-    private final CustomerService customerService;
+    ResponseEntity<?> create(@RequestBody Customer customer);
 
-    @PostMapping
-    public ResponseEntity<?> create(@RequestBody Customer customer) {
-        return customerService.create(customer);
-    }
+    ResponseEntity<?> findById(@PathVariable Long customerId);
 
-    @GetMapping("/{customerId}")
-    public ResponseEntity<?> findById(@PathVariable Long customerId) {
-        return customerService.findById(customerId);
-    }
+    ResponseEntity<?> update(@PathVariable Long customerId, @RequestBody Customer customer);
 
-    @PutMapping("/{customerId}")
-    public ResponseEntity<?> update(@PathVariable Long customerId, @RequestBody Customer customer) {
-        return customerService.update(customerId, customer);
-    }
-
-    @DeleteMapping("/{customerId}")
-    public ResponseEntity<?> delete(@PathVariable Long customerId) {
-        return customerService.delete(customerId);
-    }
+    ResponseEntity<?> delete(@PathVariable Long customerId);
 }
