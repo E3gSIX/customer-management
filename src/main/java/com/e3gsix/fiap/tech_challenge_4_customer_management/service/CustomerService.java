@@ -38,7 +38,6 @@ public class CustomerService {
 
         if (customerExist != null) {
             customerExist.setName(customer.getName());
-            customerExist.setBirthDate(customer.getBirthDate());
             customerExist.setUf(customer.getUf());
             customerExist.setAddress(customer.getAddress());
             return ResponseEntity.ok(customerRepository.save(customerExist));
