@@ -3,8 +3,7 @@ services:
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_DATABASE: 'mydatabase'
-      MYSQL_USER: 'root'
+      MYSQL_DATABASE: 'customers_db'
       MYSQL_ROOT_PASSWORD: 'my-secret-pw'
     ports:
       - '3307:3306'
