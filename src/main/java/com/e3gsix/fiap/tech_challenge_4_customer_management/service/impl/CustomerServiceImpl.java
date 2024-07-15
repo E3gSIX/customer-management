@@ -16,49 +16,37 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
 
-    public List<Customer> findAll() {
-        return customerRepository.findAll();
-    }
-
     @Override
-    public ResponseEntity<?> findById(Long customerId) {
-        Customer customer = customerRepository.findById(customerId).orElse(null);
-
-        if (customer != null) {
-            return ResponseEntity.ok(customer);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found.");
-        }
+    public Customer findById(Long customerId) {
+        return customerRepository.findById(customerId).orElse(null);
     }
 
     @Override
     public ResponseEntity<?> create(Customer customer) {
+
         return ResponseEntity.ok(customerRepository.save(customer));
     }
 
     @Override
-    public ResponseEntity<?> update(Long customerId, Customer customer) {
+    public Customer update(Long customerId, Customer customer) {
         Customer customerExist = customerRepository.findById(customerId).orElse(null);
 
         if (customerExist != null) {
             customerExist.setName(customer.getName());
             customerExist.setUf(customer.getUf());
             customerExist.setAddress(customer.getAddress());
-            return ResponseEntity.ok(customerRepository.save(customerExist));
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found.");
+            customerRepository.save(customerExist);
         }
+        return customerExist;
     }
 
     @Override
-    public ResponseEntity<?> delete(Long customerId) {
+    public Customer delete(Long customerId) {
         Customer customerExist = customerRepository.findById(customerId).orElse(null);
 
         if (customerExist != null) {
             customerRepository.delete(customerExist);
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found.");
         }
+        return customerExist;
     }
 }
