@@ -4,6 +4,7 @@ import com.e3gsix.fiap.tech_challenge_4_customer_management.controller.CustomerC
 import com.e3gsix.fiap.tech_challenge_4_customer_management.model.Customer;
 import com.e3gsix.fiap.tech_challenge_4_customer_management.service.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,18 +24,36 @@ public class CustomerControllerImpl implements CustomerController {
     @GetMapping("/{customerId}")
     @Override
     public ResponseEntity<?> findById(@PathVariable Long customerId) {
-        return customerService.findById(customerId);
+        Customer customer = customerService.findById(customerId);
+
+        if (customer != null) {
+            return ResponseEntity.ok(customer);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found.");
+        }
     }
 
     @PutMapping("/{customerId}")
     @Override
     public ResponseEntity<?> update(@PathVariable Long customerId, @RequestBody Customer customer) {
-        return customerService.update(customerId, customer);
+        Customer customerUpdated = customerService.update(customerId, customer);
+
+        if (customerUpdated != null) {
+            return ResponseEntity.ok(customerUpdated);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found.");
+        }
     }
 
     @DeleteMapping("/{customerId}")
     @Override
     public ResponseEntity<?> delete(@PathVariable Long customerId) {
-        return customerService.delete(customerId);
+        Customer customerDeleted = customerService.delete(customerId);
+
+        if (customerDeleted != null) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found.");
+        }
     }
 }

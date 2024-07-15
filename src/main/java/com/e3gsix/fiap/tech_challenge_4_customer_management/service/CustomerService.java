@@ -6,11 +6,11 @@ import org.springframework.http.ResponseEntity;
 
 public interface CustomerService {
 
-    public ResponseEntity<?> findById(Long customerId);
+    Customer findById(Long customerId);
 
-    public ResponseEntity<?> create(Customer customer);
+    ResponseEntity<?> create(Customer customer);
 
-    public ResponseEntity<?> update(Long customerId, Customer customer);
+    Customer update(Long customerId, Customer customer);
 
-    public ResponseEntity<?> delete(Long customerId);
+    Customer delete(Long customerId);
 }
