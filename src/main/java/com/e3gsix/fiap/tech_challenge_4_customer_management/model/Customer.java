@@ -1,13 +1,14 @@
 package com.e3gsix.fiap.tech_challenge_4_customer_management.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Entity(name = "customers")
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
-@Entity
 public class Customer {
 
     @Id
