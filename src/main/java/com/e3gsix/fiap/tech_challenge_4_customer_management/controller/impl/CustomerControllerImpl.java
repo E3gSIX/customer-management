@@ -18,7 +18,7 @@ public class CustomerControllerImpl implements CustomerController {
     @PostMapping
     @Override
     public ResponseEntity<?> create(@RequestBody Customer customer) {
-        return customerService.create(customer);
+        return ResponseEntity.status(HttpStatus.CREATED).body(customer);
     }
 
     @GetMapping("/{customerId}")
@@ -39,7 +39,7 @@ public class CustomerControllerImpl implements CustomerController {
     @DeleteMapping("/{customerId}")
     @Override
     public ResponseEntity<?> delete(@PathVariable Long customerId) {
-        Customer customerDeleted = customerService.delete(customerId);
+        customerService.delete(customerId);
         return ResponseEntity.ok().build();
     }
 }
