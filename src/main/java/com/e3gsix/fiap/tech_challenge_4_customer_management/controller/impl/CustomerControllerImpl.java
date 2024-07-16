@@ -18,7 +18,8 @@ public class CustomerControllerImpl implements CustomerController {
     @PostMapping
     @Override
     public ResponseEntity<?> create(@RequestBody Customer customer) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(customer);
+        Customer createdCustomer = this.customerService.create(customer);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
     }
 
     @GetMapping("/{customerId}")
