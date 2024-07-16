@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Tag(
         name = "Clientes [CustomerController]",
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface CustomerController {
 
     @Operation(summary = "Criar um cliente.")
-    ResponseEntity<?> create(@RequestBody Customer customer);
+    ResponseEntity<?> create(@RequestBody Customer customer, UriComponentsBuilder uriComponentsBuilder);
 
     @Operation(summary = "Buscar um cliente pelo ID.")
     ResponseEntity<?> findById(@PathVariable Long customerId);
